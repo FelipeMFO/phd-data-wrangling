@@ -1,0 +1,5 @@
+{
+    "RAW_DATA": "../data/raw/",
+    "TRAIN_FOLDER": "../data/structured/train_set",
+    "TEST_FOLDER": "../data/structured/test_set/"
+}
