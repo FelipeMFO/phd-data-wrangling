@@ -28,7 +28,7 @@ class Processing():
         }
         return ans
 
-    def get_tabdata_dfs_dict(self, fits_dict: dict, only_mult_1:bool = True) -> dict:
+    def get_energy_dict(self, fits_dict: dict, only_mult_1:bool = True) -> dict:
         """Create a dictionary containing the tabdata ds for the FITS file .
 
         Args:
@@ -39,7 +39,8 @@ class Processing():
         """
         ans = {}
         for key in fits_dict.keys():
-            df_temp = pd.DataFrame(self.get_objects(fits_dict[key]['tabdata']))
-            if only_mult_1: df_temp.drop(df_temp[df_temp.mult != 1].index, inplace=True)
-            ans[key[0:2]] = df_temp
+            if only_mult_1:
+                mult_filter = self.get_objects(fits_dict[key]['tabdata'])["mult"] == 1
+                data_temp = self.get_objects(fits_dict[key]['tabdata'])["energy"][mult_filter]
+            ans[key[0:2]] = data_temp
         return ans
