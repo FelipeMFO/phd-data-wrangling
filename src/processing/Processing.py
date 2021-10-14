@@ -28,7 +28,7 @@ class Processing():
         }
         return ans
 
-    def get_energy_dict(self, fits_dict: dict, only_mult_1:bool = True) -> dict:
+    def get_energy_dict(self, fits_dict: dict, only_mult_1: bool = True) -> dict:
         """Create a dictionary containing the tabdata ds for the FITS file .
 
         Args:
@@ -43,4 +43,20 @@ class Processing():
                 mult_filter = self.get_objects(fits_dict[key]['tabdata'])["mult"] == 1
                 data_temp = self.get_objects(fits_dict[key]['tabdata'])["energy"][mult_filter]
             ans[key[0:2]] = data_temp
+        return ans
+
+    def get_energy_tuple(self, fits_dict: dict, only_mult_1: bool = True) -> tuple:
+        """Create a dictionary containing the tabdata ds for the FITS file .
+        BROKEN
+        Args:
+            fits_dict (dict): [description]
+
+        Returns:
+            dict: [description]
+        """
+        ans = tuple(
+            (key[0:2], self.get_objects(fits_dict[key]['tabdata'])["energy"])
+            for key in fits_dict.keys()
+            if self.get_objects(fits_dict[key]['tabdata'])["mult"].any() == 1
+        )
         return ans

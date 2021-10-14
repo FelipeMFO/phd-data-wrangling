@@ -3,15 +3,31 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 
+
 class Plots():
     """Creates a new class that will be used for rendering the plots .
     """
     def __init__(self) -> None:
         pass
-    
+
+    def plot_spectrum(self, energy_array: np.ndarray) -> None:
+        """AI is creating summary for plot_spectrum
+
+        Args:
+            energy_array (np.ndarray): [description]
+        """
+        spectrum, bins = np.histogram(
+            energy_array,
+            range=(0, 400),
+            bins=3000)
+        plt.plot(bins[:-1], spectrum)
+        plt.xlabel("Energy (keV)")
+        plt.ylabel("Counts")
+
     def plot_spectrums(
         self, energies_dict: dict, title: str,
-        figsize: tuple = (16,12), ncols:int = 2
+        figsize: tuple = (16, 12), ncols: int = 2,
+        max_energy: int = 350
     ) -> None:
         """AI is creating summary for plot_spectrum
 
@@ -21,12 +37,12 @@ class Plots():
             tuple (tuple, optional): [description]. Defaults to (16,12).
             ncols (int, optional): [description]. Defaults to 2.
         """
-        nrows = (len(energies_dict)//ncols) + 1
+        nrows = (len(energies_dict)//ncols) + 1 if (len(energies_dict)%ncols) != 0 else len(energies_dict)//ncols
         fig, axs = plt.subplots(nrows=nrows, ncols=ncols, figsize= figsize)
         fig.suptitle(title, fontsize=20)
         for key, ax in zip(energies_dict.keys(), axs.flat):
             data = energies_dict[key]
-            spectre, bins = np.histogram(data,range = (0,data.max()*0.7),bins = 3000)
+            spectre, bins = np.histogram(data,range = (0, max_energy),bins = 3000)
 
             ax.plot(bins[:-1],spectre)
             ax.set_xlabel("Energy (keV)")
