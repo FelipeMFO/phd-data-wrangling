@@ -70,27 +70,3 @@ class Plots():
             plt.plot(bins[:-1],spectre)
             plt.xlabel("Energy (keV)")
             plt.ylabel("Counts")
-            
-
-    # def plot_spectrum(self, energies_dict:dict, title: str,
-    #                   figsize: tuple = (16,12), ncols:int = 2) -> None:
-    #     """Plot the spectrum of the given dictionary .
-
-    #     Args:
-    #         dfs_dict (dict): [description]
-    #         ncols (int, optional): [description]. Defaults to 2.
-    #     """
-    #     nrows = (len(energies_dict)//ncols) + 1
-    #     fig, axs = plt.subplots(nrows=nrows, ncols=ncols, figsize=figsize)
-    #     fig.suptitle(title, fontsize=20)
-
-    #     for ax, key in zip(axs.flat, energies_dict.keys()):
-    #         data = energies_dict[key]
-    #         ax.set(xlim=(0, data.max()*1.1))
-    #         ax.set_title(f"Single events of {key.capitalize()} spectrum")
-    #         ax.set_xlabel("Energy (keV)")
-    #         sns.histplot(
-    #             data=data,
-    #             ax = ax,
-    #             bins=100,
-    #             kde=True)
