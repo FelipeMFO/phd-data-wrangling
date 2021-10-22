@@ -1,5 +1,8 @@
 import astropy
+import numpy as np
 import pandas as pd
+from sklearn.decomposition import PCA
+from sklearn import preprocessing
 
 
 class Processing():
@@ -60,3 +63,22 @@ class Processing():
             if self.get_objects(fits_dict[key]['tabdata'])["mult"].any() == 1
         )
         return ans
+
+    def scale(self, df:pd.DataFrame) -> pd.DataFrame:
+        scaler = preprocessing.QuantileTransformer()
+        df_scaled = scaler.fit_transform(df)
+        return df_scaled
+
+    def reduce_dimension(self, df:pd.DataFrame, data_representation: float) -> np.ndarray:
+        """Apply pca and reduce dimensionality of the data frame
+
+        Args:
+            df (pd.DataFrame): [description]
+            data_representation (float): [description]
+
+        Returns:
+            np.ndarray: [description]
+        """
+        pca = PCA(data_representation)
+        X = pca.fit_transform(df)
+        return X

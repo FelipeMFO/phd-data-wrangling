@@ -83,6 +83,8 @@ class FeatureEngineering():
         #df.reset_index(inplace=True)
         df[f'has_{element}'] = df.apply(lambda row: element in row.name, axis = 1)
 
+
+
     # def gen_mixed_energies_dict_p(self, energies_dict: dict, photons_amount: int,
     #                             amount_per_combination: int = 1000) -> dict:
     #     """Idea here is to receive the energy dict, just after data
