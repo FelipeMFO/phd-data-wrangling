@@ -1,5 +1,6 @@
 {
     "RAW_DATA": "../data/raw/",
+    "STRUCTURED_DATA": "../data/structured/",
     "TRAIN_FOLDER": "../data/structured/train_set",
     "TEST_FOLDER": "../data/structured/test_set/"
 }
