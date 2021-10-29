@@ -7,7 +7,8 @@ import multiprocessing as mp
 class FeatureEngineering():
     """AI is creating summary for FeatureEngineering
     """
-    def __init__(self) -> None:
+    def __init__(self, seed: int = 1) -> None:
+        np.random.seed = seed
         pass
 
     def mix_numpy_arrays_comp_list(self,

@@ -1,6 +1,7 @@
 import astropy
 import numpy as np
 import pandas as pd
+import sklearn
 from sklearn.decomposition import PCA
 from sklearn import preprocessing
 
@@ -69,7 +70,7 @@ class Processing():
         df_scaled = scaler.fit_transform(df)
         return df_scaled
 
-    def reduce_dimension(self, df:pd.DataFrame, data_representation: float) -> np.ndarray:
+    def reduce_dimension(self, df:pd.DataFrame, features: int) -> np.ndarray:
         """Apply pca and reduce dimensionality of the data frame
 
         Args:
@@ -79,6 +80,11 @@ class Processing():
         Returns:
             np.ndarray: [description]
         """
-        pca = PCA(data_representation)
+        pca = PCA(features)
         X = pca.fit_transform(df)
+        return X, pca
+
+    def apply_pca(self, df:pd.DataFrame, pca_object: PCA) -> np.ndarray:
+        """Apply pca from pca_object received"""
+        X = pca_object.fit_transform(df)
         return X

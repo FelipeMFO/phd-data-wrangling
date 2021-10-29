@@ -2,5 +2,7 @@
     "RAW_DATA": "../data/raw/",
     "STRUCTURED_DATA": "../data/structured/",
     "TRAIN_FOLDER": "../data/structured/train_set",
-    "TEST_FOLDER": "../data/structured/test_set/"
+    "TEST_FOLDER": "../data/structured/test_set/",
+    "SEED_TRAIN": 42,
+    "SEED_TEST": 33 
 }
